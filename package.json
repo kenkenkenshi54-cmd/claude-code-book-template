@@ -1,0 +1,26 @@
+{
+  "name": "claude-code-book-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenkenkenshi54-cmd/claude-code-book-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/kenkenkenshi54-cmd/claude-code-book-template/issues"
+  },
+  "homepage": "https://github.com/kenkenkenshi54-cmd/claude-code-book-template#readme",
+  "dependencies": {
+    "docx": "^9.6.1",
+    "exceljs": "^4.4.0",
+    "playwright": "^1.59.1"
+  }
+}
