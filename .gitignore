@@ -1,0 +1,20 @@
+# 作業データ（input/output）はgit管理から除外
+# 各フォルダの存在は .gitkeep で残す
+workspace/*/input/*
+workspace/*/output/*
+!workspace/*/input/.gitkeep
+!workspace/*/output/.gitkeep
+
+# Playwright sessions (auth cookies - DO NOT COMMIT)
+workspace/sessions/
+
+# Node.js
+node_modules/
+package-lock.json
+
+# Playwright artifacts
+.playwright/
+test-results/
+
+# Claude Code: skills は管理対象、ローカル設定は除外
+.claude/settings.local.json
