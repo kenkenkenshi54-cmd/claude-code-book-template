@@ -1,0 +1,305 @@
+{
+  "2021": {
+    "segments": {},
+    "summary": {
+      "Prior4YearInstant": {
+        "従業員数": "3802"
+      },
+      "Prior3YearInstant": {
+        "従業員数": "4313"
+      },
+      "Prior2YearInstant": {
+        "従業員数": "5092"
+      },
+      "Prior1YearInstant": {
+        "従業員数": "12"
+      },
+      "CurrentYearInstant": {
+        "従業員数": "51"
+      }
+    }
+  },
+  "2022": {
+    "segments": {
+      "連結": {
+        "売上_prior1": 98887,
+        "売上_current": 148573
+      },
+      "機電・IT": {
+        "売上_prior1": 49723,
+        "capex_prior1": 81,
+        "売上_current": 70781,
+        "capex_current": 327
+      },
+      "建設": {
+        "売上_prior1": 8721,
+        "capex_prior1": 50,
+        "売上_current": 36922,
+        "capex_current": 333
+      },
+      "製造": {
+        "売上_prior1": 8662,
+        "capex_prior1": 4,
+        "売上_current": 9682,
+        "capex_current": 11
+      },
+      "海外": {
+        "売上_prior1": 31557,
+        "capex_prior1": 99,
+        "売上_current": 30209,
+        "capex_current": 226
+      }
+    },
+    "summary": {
+      "Prior1YearDuration": {
+        "連結売上収益(サマリ)": "98887000000",
+        "親会社株主帰属当期純利益": "-27122000000",
+        "ROE": "-0.417"
+      },
+      "CurrentYearDuration": {
+        "連結売上収益(サマリ)": "148573000000",
+        "親会社株主帰属当期純利益": "6975000000",
+        "ROE": "0.111"
+      },
+      "Prior2YearInstant": {
+        "従業員数": "12"
+      },
+      "Prior1YearInstant": {
+        "従業員数": "51"
+      },
+      "CurrentYearInstant": {
+        "従業員数": "77"
+      },
+      "Prior4YearInstant": {
+        "従業員数": "4313"
+      },
+      "Prior3YearInstant": {
+        "従業員数": "5092"
+      }
+    }
+  },
+  "2023": {
+    "segments": {
+      "連結": {
+        "売上_prior1": 148573,
+        "売上_current": 161689
+      },
+      "機電・IT": {
+        "売上_prior1": 70781,
+        "capex_prior1": 327,
+        "売上_current": 80405,
+        "capex_current": 304
+      },
+      "建設": {
+        "売上_prior1": 36922,
+        "capex_prior1": 333,
+        "売上_current": 40122,
+        "capex_current": 71
+      },
+      "製造": {
+        "売上_prior1": 9682,
+        "capex_prior1": 11,
+        "売上_current": 10997,
+        "capex_current": 7
+      },
+      "海外": {
+        "売上_prior1": 30209,
+        "capex_prior1": 226,
+        "売上_current": 29105,
+        "capex_current": 75
+      }
+    },
+    "summary": {
+      "Prior2YearDuration": {
+        "連結売上収益(サマリ)": "98887000000",
+        "親会社株主帰属当期純利益": "-27122000000",
+        "ROE": "-0.698"
+      },
+      "Prior1YearDuration": {
+        "連結売上収益(サマリ)": "148573000000",
+        "親会社株主帰属当期純利益": "6975000000",
+        "ROE": "0.109"
+      },
+      "CurrentYearDuration": {
+        "連結売上収益(サマリ)": "161689000000",
+        "親会社株主帰属当期純利益": "9533000000",
+        "ROE": "0.149"
+      },
+      "Prior3YearInstant": {
+        "従業員数": "12"
+      },
+      "Prior2YearInstant": {
+        "従業員数": "51"
+      },
+      "Prior1YearInstant": {
+        "従業員数": "77"
+      },
+      "CurrentYearInstant": {
+        "従業員数": "111"
+      },
+      "Prior4YearInstant": {
+        "従業員数": "5092"
+      }
+    }
+  },
+  "2024": {
+    "segments": {
+      "連結": {
+        "売上_prior1": 150697,
+        "売上_current": 173225,
+        "営業利益_prior1": 12314,
+        "営業利益_current": 14421
+      },
+      "機電・IT": {
+        "売上_prior1": 80405,
+        "営業利益_prior1": 8609,
+        "capex_prior1": 304,
+        "売上_current": 91105,
+        "営業利益_current": 8930,
+        "capex_current": 353
+      },
+      "建設": {
+        "売上_prior1": 40122,
+        "営業利益_prior1": 6271,
+        "capex_prior1": 71,
+        "売上_current": 44994,
+        "営業利益_current": 6878,
+        "capex_current": 122
+      },
+      "製造": {
+        "売上_prior1": 10997,
+        "営業利益_prior1": 556,
+        "capex_prior1": 7,
+        "売上_current": 7998,
+        "営業利益_current": 2063,
+        "capex_current": 9
+      },
+      "海外": {
+        "売上_prior1": 29105,
+        "営業利益_prior1": 549,
+        "capex_prior1": 75,
+        "売上_current": 35701,
+        "営業利益_current": 570,
+        "capex_current": 69
+      }
+    },
+    "summary": {
+      "Prior3YearDuration": {
+        "連結売上収益(サマリ)": "98887000000",
+        "親会社株主帰属当期純利益": "-27122000000",
+        "ROE": "-0.698"
+      },
+      "Prior2YearDuration": {
+        "連結売上収益(サマリ)": "148573000000",
+        "親会社株主帰属当期純利益": "6975000000",
+        "ROE": "0.109"
+      },
+      "Prior1YearDuration": {
+        "連結売上収益(サマリ)": "150697000000",
+        "親会社株主帰属当期純利益": "9533000000",
+        "ROE": "0.149"
+      },
+      "CurrentYearDuration": {
+        "連結売上収益(サマリ)": "173225000000",
+        "親会社株主帰属当期純利益": "11768000000",
+        "ROE": "0.170"
+      },
+      "Prior4YearInstant": {
+        "従業員数": "12"
+      },
+      "Prior3YearInstant": {
+        "従業員数": "51"
+      },
+      "Prior2YearInstant": {
+        "従業員数": "77"
+      },
+      "Prior1YearInstant": {
+        "従業員数": "111"
+      },
+      "CurrentYearInstant": {
+        "従業員数": "131"
+      }
+    }
+  },
+  "2025": {
+    "segments": {
+      "連結": {
+        "売上_prior1": 173225,
+        "売上_current": 187954,
+        "営業利益_prior1": 14421,
+        "営業利益_current": 16406
+      },
+      "機電・IT": {
+        "売上_prior1": 91105,
+        "営業利益_prior1": 8930,
+        "capex_prior1": 353,
+        "売上_current": 101519,
+        "営業利益_current": 11022,
+        "capex_current": 517
+      },
+      "建設": {
+        "売上_prior1": 44994,
+        "営業利益_prior1": 6878,
+        "capex_prior1": 122,
+        "売上_current": 56904,
+        "営業利益_current": 7537,
+        "capex_current": 235
+      },
+      "製造": {
+        "売上_prior1": 7998,
+        "営業利益_prior1": 2063,
+        "capex_prior1": 9
+      },
+      "海外": {
+        "売上_prior1": 35701,
+        "営業利益_prior1": 570,
+        "capex_prior1": 69,
+        "売上_current": 27833,
+        "営業利益_current": 945,
+        "capex_current": 50
+      }
+    },
+    "summary": {
+      "Prior4YearDuration": {
+        "連結売上収益(サマリ)": "98887000000",
+        "親会社株主帰属当期純利益": "-27122000000",
+        "ROE": "-0.698"
+      },
+      "Prior3YearDuration": {
+        "連結売上収益(サマリ)": "148573000000",
+        "親会社株主帰属当期純利益": "6975000000",
+        "ROE": "0.109"
+      },
+      "Prior2YearDuration": {
+        "連結売上収益(サマリ)": "150697000000",
+        "親会社株主帰属当期純利益": "9533000000",
+        "ROE": "0.149"
+      },
+      "Prior1YearDuration": {
+        "連結売上収益(サマリ)": "173225000000",
+        "親会社株主帰属当期純利益": "11768000000",
+        "ROE": "0.170"
+      },
+      "CurrentYearDuration": {
+        "連結売上収益(サマリ)": "187954000000",
+        "親会社株主帰属当期純利益": "12559000000",
+        "ROE": "0.165"
+      },
+      "Prior4YearInstant": {
+        "従業員数": "51"
+      },
+      "Prior3YearInstant": {
+        "従業員数": "77"
+      },
+      "Prior2YearInstant": {
+        "従業員数": "111"
+      },
+      "Prior1YearInstant": {
+        "従業員数": "131"
+      },
+      "CurrentYearInstant": {
+        "従業員数": "123"
+      }
+    }
+  }
+}

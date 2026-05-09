@@ -1,0 +1,31 @@
+[
+  {
+    "label": "FY2021_Mar",
+    "found": true,
+    "docID": "S100LNUU",
+    "date": "2021-06-25",
+    "desc": "有価証券報告書－第15期(令和2年4月1日－令和3年3月31日)"
+  },
+  {
+    "label": "FY2022_Mar",
+    "found": true,
+    "docID": "S100OF8G",
+    "date": "2022-06-24",
+    "desc": "有価証券報告書－第16期(令和3年4月1日－令和4年3月31日)"
+  },
+  {
+    "label": "FY2023_Mar",
+    "found": true,
+    "docID": "S100R0ZS",
+    "date": "2023-06-22",
+    "desc": "有価証券報告書－第17期(2022/04/01－2023/03/31)"
+  },
+  {
+    "label": "FY2024H1_Sep",
+    "found": false
+  },
+  {
+    "label": "FY2025_Sep",
+    "found": false
+  }
+]

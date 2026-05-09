@@ -1,0 +1,38 @@
+[
+  {
+    "label": "yuho_6th_FY2023",
+    "found": true,
+    "docID": "S100T5KO",
+    "date": "2024-03-28",
+    "docTypeCode": "120",
+    "desc": "有価証券報告書－第6期(2023/01/01－2023/12/31)",
+    "filer": "株式会社トライト"
+  },
+  {
+    "label": "yuho_7th_FY2024",
+    "found": true,
+    "docID": "S100VHZW",
+    "date": "2025-03-28",
+    "docTypeCode": "120",
+    "desc": "有価証券報告書－第7期(2024/01/01－2024/12/31)",
+    "filer": "株式会社トライト"
+  },
+  {
+    "label": "ibu_IPO_2023",
+    "found": true,
+    "docID": "S100QZXQ",
+    "date": "2023-06-20",
+    "docTypeCode": "030",
+    "desc": "有価証券届出書（新規公開時）",
+    "filer": "株式会社トライト"
+  },
+  {
+    "label": "hanki_8th_H1",
+    "found": true,
+    "docID": "S100WHRZ",
+    "date": "2025-08-08",
+    "docTypeCode": "160",
+    "desc": "半期報告書－第8期(2025/01/01－2025/12/31)",
+    "filer": "株式会社トライト"
+  }
+]
