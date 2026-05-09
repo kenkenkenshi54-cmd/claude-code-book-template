@@ -1,0 +1,24 @@
+[
+  {
+    "label": "FY2018_Mar",
+    "found": false
+  },
+  {
+    "label": "FY2019_Mar",
+    "found": true,
+    "docID": "S100G8WP",
+    "date": "2019-06-26",
+    "docTypeCode": "120",
+    "desc": "有価証券報告書－第13期(平成30年4月1日－平成31年3月31日)",
+    "filer": "株式会社コプロ・ホールディングス"
+  },
+  {
+    "label": "FY2020_Mar",
+    "found": true,
+    "docID": "S100IZX6",
+    "date": "2020-06-25",
+    "docTypeCode": "120",
+    "desc": "有価証券報告書－第14期(平成31年4月1日－令和2年3月31日)",
+    "filer": "株式会社コプロ・ホールディングス"
+  }
+]

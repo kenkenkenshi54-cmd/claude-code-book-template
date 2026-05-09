@@ -1,0 +1,129 @@
+{
+  "technopro": [
+    {
+      "label": "FY2016",
+      "found": true,
+      "docID": "S1008QNT",
+      "date": "2016-09-29",
+      "docTypeCode": "120",
+      "desc": "有価証券報告書－第11期(2015/07/01－2016/06/30)",
+      "filer": "テクノプロ・ホールディングス株式会社"
+    },
+    {
+      "label": "FY2017",
+      "found": true,
+      "docID": "S100BEU9",
+      "date": "2017-09-28",
+      "docTypeCode": "120",
+      "desc": "有価証券報告書－第12期(2016/07/01－2017/06/30)",
+      "filer": "テクノプロ・ホールディングス株式会社"
+    },
+    {
+      "label": "FY2018",
+      "found": true,
+      "docID": "S100E6YU",
+      "date": "2018-09-27",
+      "docTypeCode": "120",
+      "desc": "有価証券報告書－第13期(平成29年7月1日－平成30年6月30日)",
+      "filer": "テクノプロ・ホールディングス株式会社"
+    },
+    {
+      "label": "FY2019",
+      "found": true,
+      "docID": "S100H1B7",
+      "date": "2019-09-27",
+      "docTypeCode": "120",
+      "desc": "有価証券報告書－第14期(平成30年7月1日－令和1年6月30日)",
+      "filer": "テクノプロ・ホールディングス株式会社"
+    },
+    {
+      "label": "FY2020",
+      "found": true,
+      "docID": "S100JS6H",
+      "date": "2020-09-29",
+      "docTypeCode": "120",
+      "desc": "有価証券報告書－第15期(令和1年7月1日－令和2年6月30日)",
+      "filer": "テクノプロ・ホールディングス株式会社"
+    }
+  ],
+  "openup": [
+    {
+      "label": "FY2016",
+      "found": true,
+      "docID": "S1008PSS",
+      "date": "2016-09-26",
+      "docTypeCode": "120",
+      "desc": "有価証券報告書－第12期(2015/07/01－2016/06/30)",
+      "filer": "株式会社オープンアップグループ"
+    },
+    {
+      "label": "FY2017",
+      "found": true,
+      "docID": "S100BDXQ",
+      "date": "2017-09-25",
+      "docTypeCode": "120",
+      "desc": "有価証券報告書－第13期(2016/07/01－2017/06/30)",
+      "filer": "株式会社オープンアップグループ"
+    },
+    {
+      "label": "FY2018",
+      "found": true,
+      "docID": "S100E5X5",
+      "date": "2018-09-25",
+      "docTypeCode": "120",
+      "desc": "有価証券報告書－第14期(平成29年7月1日－平成30年6月30日)",
+      "filer": "株式会社トラスト・テック"
+    },
+    {
+      "label": "FY2019",
+      "found": true,
+      "docID": "S100H1M2",
+      "date": "2019-09-30",
+      "docTypeCode": "120",
+      "desc": "有価証券報告書－第15期(平成30年7月1日－令和1年6月30日)",
+      "filer": "株式会社トラスト・テック"
+    },
+    {
+      "label": "FY2020",
+      "found": true,
+      "docID": "S100JSTD",
+      "date": "2020-09-30",
+      "docTypeCode": "120",
+      "desc": "有価証券報告書－第16期(令和1年7月1日－令和2年6月30日)",
+      "filer": "株式会社ビーネックスグループ"
+    }
+  ],
+  "copro": [
+    {
+      "label": "FY2018_Mar",
+      "found": false
+    },
+    {
+      "label": "FY2019_Mar",
+      "found": true,
+      "docID": "S100G8WP",
+      "date": "2019-06-26",
+      "docTypeCode": "120",
+      "desc": "有価証券報告書－第13期(平成30年4月1日－平成31年3月31日)",
+      "filer": "株式会社コプロ・ホールディングス"
+    },
+    {
+      "label": "FY2020_Mar",
+      "found": true,
+      "docID": "S100IZX6",
+      "date": "2020-06-25",
+      "docTypeCode": "120",
+      "desc": "有価証券報告書－第14期(平成31年4月1日－令和2年3月31日)",
+      "filer": "株式会社コプロ・ホールディングス"
+    }
+  ],
+  "nareru": [
+    {
+      "label": "ibu_IPO_2023",
+      "found": true,
+      "docID": "S100QZAG",
+      "date": "2023-06-19",
+      "docTypeCode": "010"
+    }
+  ]
+}
