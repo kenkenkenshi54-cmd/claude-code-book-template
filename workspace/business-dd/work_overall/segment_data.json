@@ -138,6 +138,22 @@
       "headcount_total": 2242,
       "headcount_segment": null,
       "notes": "第14期有報抽出。単一セグメント開示のためサービス別建設売上は当時の収益認識注記が無く取得不可 (FY22から開示開始)。連結数値のみ。"
+    },
+    "FY2018": {
+      "segment_revenue": null,
+      "segment_op_income": null,
+      "segment_op_margin": null,
+      "segment_assets": null,
+      "segment_capex": null,
+      "segment_depreciation": null,
+      "consol_revenue": 8960,
+      "consol_op_income": 895,
+      "consol_op_margin": 9.98,
+      "consol_gross_profit": null,
+      "consol_gross_margin": null,
+      "headcount_total": null,
+      "headcount_segment": null,
+      "notes": "IPO初年度(2018/3末上場)。連結業績はirbank.net公開データから補完。EDINET直接取得は提出時期外で未取得。"
     }
   },
   "nareru": {
@@ -279,13 +295,13 @@
       "segment_capex": 50,
       "segment_depreciation": null,
       "consol_revenue": 98887,
-      "consol_op_income": null,
-      "consol_op_margin": null,
+      "consol_op_income": -25200,
+      "consol_op_margin": -25.5,
       "consol_gross_profit": 19273,
       "consol_gross_margin": 19.49,
       "headcount_total": 30067,
       "headcount_segment": 5862,
-      "notes": "FY21はJGAAP開示（IFRS切替前）。連結粗利・売上はjppfs_corから取得。建設セグメント数値は規模が小さい点に留意（夢真HD合併が2021年）。連結営業利益は△271億円（合併に伴う非経常項目）でセグメント別は不開示。"
+      "notes": "FY21はJGAAP開示（IFRS切替前）。連結粗利・売上はjppfs_corから取得。建設セグメント数値は規模が小さい点に留意（夢真HD合併が2021年）。連結営業利益は△271億円（合併に伴う非経常項目）でセグメント別は不開示。 連結営業損失△252億は2021年4月の旧夢真HD合併に伴うのれん減損等の非経常項目 (irbank.net公開データ)。"
     },
     "FY2022": {
       "segment_revenue": 36922,
@@ -295,13 +311,13 @@
       "segment_capex": 333,
       "segment_depreciation": null,
       "consol_revenue": 148573,
-      "consol_op_income": null,
-      "consol_op_margin": null,
+      "consol_op_income": 10100,
+      "consol_op_margin": 6.8,
       "consol_gross_profit": 34432,
       "consol_gross_margin": 23.18,
       "headcount_total": 29084,
       "headcount_segment": 6043,
-      "notes": "IFRS適用開始（FY22から）。セグメント別営業利益は当期有報では未開示（FY23から開示開始）。"
+      "notes": "IFRS適用開始（FY22から）。セグメント別営業利益は当期有報では未開示（FY23から開示開始）。 連結営業利益101億 (irbank.net) - 経営統合一巡で正常化。"
     },
     "FY2023": {
       "segment_revenue": 40122,
@@ -521,13 +537,13 @@
       "segment_capex": null,
       "segment_depreciation": null,
       "consol_revenue": 90323,
-      "consol_op_income": null,
-      "consol_op_margin": null,
+      "consol_op_income": 8490,
+      "consol_op_margin": 9.4,
       "consol_gross_profit": null,
       "consol_gross_margin": null,
       "headcount_total": 12990,
       "headcount_segment": null,
-      "notes": "EDINETから第11期有報抽出。施工管理セグメント数値はセグメント情報注記から自動抽出（精度限定的、PDF確認推奨）。"
+      "notes": "EDINETから第11期有報抽出。施工管理セグメント数値はセグメント情報注記から自動抽出（精度限定的、PDF確認推奨）。 連結営業利益はirbank.net公開データから補完。"
     },
     "FY2019": {
       "segment_revenue": null,
@@ -569,13 +585,13 @@
       "segment_capex": null,
       "segment_depreciation": null,
       "consol_revenue": 100095,
-      "consol_op_income": null,
-      "consol_op_margin": null,
+      "consol_op_income": 9650,
+      "consol_op_margin": 9.64,
       "consol_gross_profit": null,
       "consol_gross_margin": null,
       "headcount_total": 14287,
       "headcount_segment": null,
-      "notes": "第12期有報抽出。施工管理セグメント数値はPDF確認が必要 (セグメント注記HTMLからの自動抽出は不可)。連結はJGAAP→IFRS移行期。"
+      "notes": "第12期有報抽出。施工管理セグメント数値はPDF確認が必要 (セグメント注記HTMLからの自動抽出は不可)。連結はJGAAP→IFRS移行期。 連結営業利益はirbank.net公開データから補完。"
     },
     "FY2018": {
       "segment_revenue": null,
@@ -585,13 +601,13 @@
       "segment_capex": null,
       "segment_depreciation": null,
       "consol_revenue": 116529,
-      "consol_op_income": null,
-      "consol_op_margin": null,
+      "consol_op_income": 11200,
+      "consol_op_margin": 9.64,
       "consol_gross_profit": null,
       "consol_gross_margin": null,
       "headcount_total": 17327,
       "headcount_segment": null,
-      "notes": "第13期有報抽出。施工管理セグメント数値はPDF確認が必要 (セグメント注記HTMLからの自動抽出は不可)。連結はJGAAP→IFRS移行期。"
+      "notes": "第13期有報抽出。施工管理セグメント数値はPDF確認が必要 (セグメント注記HTMLからの自動抽出は不可)。連結はJGAAP→IFRS移行期。 連結営業利益はirbank.net公開データから補完。"
     }
   },
   "trite": {
