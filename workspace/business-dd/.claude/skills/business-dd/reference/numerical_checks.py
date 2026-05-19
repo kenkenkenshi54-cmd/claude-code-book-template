@@ -264,9 +264,155 @@ def verify_all(periods: List[PeriodData], tolerance: float = 0.15,
 
 
 # ----------------------------------------------------------------------------
-# Self-test (run module directly)
+# dd_model.json gate （IR を入力にした数値ゲート本体）
 # ----------------------------------------------------------------------------
-if __name__ == "__main__":
+#
+# 使い方（business-dd ワークフローのハードゲート）:
+#     python numerical_checks.py path/to/dd_model.json
+#   PASS → exit 0 / FAIL → 非ゼロ exit + stderr。FAIL の間は docx を生成しない。
+#
+# periods / table_b の単位は百万円。verify_all は億円・tol=0.15 で調整済みのため、
+# ロード時に ÷100 で億円換算してから既存チェックに通す（IR 値が百万単位に丸められて
+# いる前提で、periods の許容差は 1.0 億円＝100百万に緩める。粗誤差のみ検出する）。
+
+_MLN_TO_OKU = 100.0  # 1 億円 = 100 百万円
+
+
+def _d_to_oku(d):
+    return {k: (v / _MLN_TO_OKU) for k, v in (d or {}).items()}
+
+
+def _v_to_oku(v):
+    return None if v is None else v / _MLN_TO_OKU
+
+
+def check_market_vintage(market: List[dict]) -> List[CheckResult]:
+    """市場規模カードは計測年(vintage)と実績/予測(kind)を必ず持つ（タムロンv2教訓の機械封じ込め）。"""
+    results = []
+    for i, m in enumerate(market or []):
+        name = m.get("name", f"market[{i}]")
+        has_vintage = isinstance(m.get("vintage"), int)
+        has_kind = m.get("kind") in ("実績", "予測")
+        ok = has_vintage and has_kind and bool(m.get("source"))
+        miss = []
+        if not has_vintage:
+            miss.append("vintage(計測年)欠落")
+        if not has_kind:
+            miss.append("kind(実績/予測)欠落")
+        if not m.get("source"):
+            miss.append("source欠落")
+        results.append(CheckResult(
+            f"M1. 市場カード必須メタ（{name}）",
+            "market", 1.0, 1.0 if ok else 0.0, 0.0 if ok else 1.0, ok,
+            "／".join(miss) if miss else "",
+        ))
+    return results
+
+
+def check_market_share_triangulation(share: List[dict], rel_tol: float = 0.30) -> List[CheckResult]:
+    """自社売上(億円) ÷ 市場規模(億円) ×100 が記載シェアと整合（粗い不整合のみ検出）。"""
+    results = []
+    for i, s in enumerate(share or []):
+        mkt = s.get("market", f"share[{i}]")
+        rev = s.get("company_revenue_oku")
+        size = s.get("market_size_oku")
+        stated = s.get("stated_share_pct")
+        if rev is None or not size or stated is None:
+            results.append(CheckResult(
+                f"S1. シェア三角測量（{mkt}）", "share", 0.0, 0.0, 0.0, False,
+                "company_revenue_oku / market_size_oku / stated_share_pct のいずれか欠落",
+            ))
+            continue
+        calc = rev / size * 100.0
+        # 相対許容（シェアは出典で定義差があるため粗い不整合のみ検出）
+        denom = max(abs(stated), 1e-9)
+        passed = abs(calc - stated) / denom <= rel_tol or abs(calc - stated) <= 1.5
+        results.append(CheckResult(
+            f"S1. シェア三角測量（{mkt}）",
+            "share", calc, stated, stated - calc, passed,
+            f"算出 {calc:.2f}% vs 記載 {stated:.2f}%（rev={rev} / size={size}）",
+        ))
+    return results
+
+
+def load_dd_model(path: str) -> dict:
+    import json
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def verify_dd_model(path: str) -> bool:
+    """dd_model.json を読み、periods は億円換算して verify_all に通し、
+    さらに市場カード必須メタ・シェア三角測量を実行する。FAIL があれば AssertionError。"""
+    m = load_dd_model(path)
+
+    periods = []
+    for p in m.get("periods", []):
+        periods.append(PeriodData(
+            label=p["label"],
+            segment_sales=_d_to_oku(p.get("segment_sales")),
+            segment_profits=_d_to_oku(p.get("segment_profits")),
+            inter_segment_elimination=_v_to_oku(p.get("inter_segment_elimination", 0.0)) or 0.0,
+            hq_overhead=_v_to_oku(p.get("hq_overhead", 0.0)) or 0.0,
+            consolidated_sales=_v_to_oku(p.get("consolidated_sales")),
+            consolidated_op_profit=_v_to_oku(p.get("consolidated_op_profit")),
+            consolidated_dep=_v_to_oku(p.get("consolidated_dep")),
+            geographic_sales=_d_to_oku(p.get("geographic_sales")) if p.get("geographic_sales") else None,
+            segment_profit_rates=p.get("segment_profit_rates"),  # ％はそのまま
+        ))
+
+    tb = m.get("table_b")
+    table_b = dict(
+        seg_sales=tb["seg_sales"], seg_profits=tb["seg_profits"],
+        sales_ratios=tb["sales_ratios"], profit_ratios=tb["profit_ratios"],
+    ) if tb else None
+
+    vub = m.get("value_up_bridge")
+    bridge = dict(
+        current_ebitda=vub["current_ebitda"],
+        organic_low=vub["organic_low"], organic_high=vub["organic_high"],
+        inorganic_low=vub["inorganic_low"], inorganic_high=vub["inorganic_high"],
+        target_low=vub["target_low"], target_high=vub["target_high"],
+    ) if vub else None
+
+    ts = m.get("top_shareholders")
+    shareholders = None
+    if ts and ts.get("ratios") and ts.get("stated_total") is not None:
+        shareholders = dict(individual_ratios=ts["ratios"], stated_total=ts["stated_total"])
+
+    # periods は百万→億換算で丸め誤差が出るため許容差を 1.0 億円に緩める
+    try:
+        verify_all(periods, tolerance=1.0, table_b=table_b,
+                   value_up_bridge=bridge, top_shareholders=shareholders)
+        core_ok = True
+    except AssertionError:
+        core_ok = False
+
+    extra = check_market_vintage(m.get("market", []))
+    extra += check_market_share_triangulation(m.get("share", []))
+    fails = [r for r in extra if not r.passed]
+    print("\n" + "=" * 90)
+    print(f"  IR追加検算（市場カード/シェア）: {len(extra)}件中 PASS={len(extra)-len(fails)} / FAIL={len(fails)}")
+    print("=" * 90)
+    for r in extra:
+        mark = "✓ PASS" if r.passed else "✗ FAIL"
+        print(f"{mark:6} {r.period:8} {r.name[:48]:48} {r.diff:+8.2f}")
+        if r.note and not r.passed:
+            print(f"       └─ {r.note}")
+    print("=" * 90)
+
+    if not core_ok or fails:
+        raise AssertionError(
+            f"dd_model 検算 FAIL（core_ok={core_ok}, 追加FAIL={len(fails)}）。docx生成を中止。"
+        )
+    print("\n✓ dd_model 全検算PASS。docx生成を継続します。")
+    return True
+
+
+# ----------------------------------------------------------------------------
+# Self-test / CLI dispatch
+# ----------------------------------------------------------------------------
+def _self_test():
     # Sample: レオン自動機 FY2025 — should all pass
     periods = [
         PeriodData(
@@ -297,3 +443,23 @@ if __name__ == "__main__":
         stated_total=48.0,
     )
     verify_all(periods, table_b=table_b, value_up_bridge=bridge, top_shareholders=shareholders)
+
+
+if __name__ == "__main__":
+    import sys
+    # Windows コンソール(cp932)でも ✓/✗/罫線を出せるよう UTF-8 に固定
+    for _s in (sys.stdout, sys.stderr):
+        try:
+            _s.reconfigure(encoding="utf-8")
+        except Exception:
+            pass
+    args = [a for a in sys.argv[1:] if a.endswith(".json")]
+    try:
+        if args:
+            verify_dd_model(args[0])
+        else:
+            _self_test()
+    except AssertionError as e:
+        print(f"\n✗ {e}", file=sys.stderr)
+        sys.exit(1)
+    sys.exit(0)

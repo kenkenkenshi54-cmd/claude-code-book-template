@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "dd_model",
+  "description": "business-dd の構造化中間表現（IR）。資料収集の後・プローズ生成の前に必ずこの形で確定する。numerical_checks.py の数値ゲートと dd-critic サブエージェントは本ファイルを入力にする。値は『出典に当たる事実』のみを入れ、推定値は載せない（推定はプローズ側で（仮説）として扱う）。単位規約: periods / table_b は百万円、value_up_bridge / market.size は各自の unit、share は億円換算。",
+  "type": "object",
+  "required": ["company", "fye_month", "periods", "table_b", "value_up_bridge", "market", "share", "competitors", "thesis"],
+  "properties": {
+    "company": { "type": "string" },
+    "ticker": { "type": "string", "description": "証券コード4桁。不明なら空文字" },
+    "fye_month": { "type": "integer", "minimum": 1, "maximum": 12 },
+    "accounting_standard": { "type": "string", "enum": ["日本基準", "IFRS", "米国基準", "不明"] },
+
+    "thesis": {
+      "type": "object",
+      "description": "投資仮説と、それを殺す問い。テーゼ駆動で掘る場所を規定する。dd-critic はこの kill_questions が本文で潰せているかを最優先で攻撃する。",
+      "required": ["statement", "kill_questions"],
+      "properties": {
+        "statement": { "type": "string", "description": "この案件のコア投資仮説を1文で" },
+        "kill_questions": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 5,
+          "items": { "type": "string" },
+          "description": "この仮説を殺す3〜5の問い（反証されたら投資が成立しない論点）"
+        }
+      }
+    },
+
+    "periods": {
+      "type": "array",
+      "minItems": 1,
+      "description": "直近5期。単位=百万円。segment_sales は『外部顧客への売上高』（セグメント計上額ではない）。取得不能は当該キーを省略し notes に未取得理由を書く（0埋め禁止）。",
+      "items": {
+        "type": "object",
+        "required": ["label", "segment_sales", "segment_profits", "consolidated_sales", "consolidated_op_profit"],
+        "properties": {
+          "label": { "type": "string", "description": "FY2025 等" },
+          "segment_sales": { "type": "object", "additionalProperties": { "type": "number" } },
+          "segment_profits": { "type": "object", "additionalProperties": { "type": "number" } },
+          "segment_profit_rates": { "type": "object", "additionalProperties": { "type": "number" }, "description": "％表記（10.9 であって 0.109 ではない）" },
+          "inter_segment_elimination": { "type": "number", "description": "符号付き。消去ならマイナス" },
+          "hq_overhead": { "type": "number", "description": "符号付き。本社一般管理費は通常マイナス" },
+          "consolidated_sales": { "type": "number" },
+          "consolidated_op_profit": { "type": "number" },
+          "consolidated_dep": { "type": ["number", "null"], "description": "連結減価償却費。不開示なら null" },
+          "geographic_sales": { "type": "object", "additionalProperties": { "type": "number" } },
+          "source": { "type": "string", "description": "有報提出日 or docID" }
+        }
+      }
+    },
+
+    "table_b": {
+      "type": "object",
+      "description": "直近期セグメント構成比（必須テーブルB）の素材。比率は％表記。",
+      "required": ["seg_sales", "seg_profits", "sales_ratios", "profit_ratios"],
+      "properties": {
+        "seg_sales": { "type": "object", "additionalProperties": { "type": "number" } },
+        "seg_profits": { "type": "object", "additionalProperties": { "type": "number" } },
+        "sales_ratios": { "type": "object", "additionalProperties": { "type": "number" } },
+        "profit_ratios": { "type": "object", "additionalProperties": { "type": "number" } }
+      }
+    },
+
+    "value_up_bridge": {
+      "type": "object",
+      "description": "Value-up Bridge。単位=億円。現状 + オーガニック + インオーガニック = 5年後ターゲット が下限・上限とも算数整合すること。",
+      "required": ["current_ebitda", "organic_low", "organic_high", "inorganic_low", "inorganic_high", "target_low", "target_high"],
+      "properties": {
+        "current_ebitda": { "type": "number" },
+        "organic_low": { "type": "number" },
+        "organic_high": { "type": "number" },
+        "inorganic_low": { "type": "number" },
+        "inorganic_high": { "type": "number" },
+        "target_low": { "type": "number" },
+        "target_high": { "type": "number" }
+      }
+    },
+
+    "top_shareholders": {
+      "type": "object",
+      "description": "大株主上位N名。stated_total は有報注記の『計』（あれば）。",
+      "properties": {
+        "ratios": { "type": "array", "items": { "type": "number" } },
+        "stated_total": { "type": ["number", "null"] }
+      }
+    },
+
+    "market": {
+      "type": "array",
+      "minItems": 1,
+      "description": "市場規模カード。各エントリは計測年(vintage)と実績/予測(kind)を必ず持つ。タムロンv2教訓（計測年欠落）の機械的封じ込め。",
+      "items": {
+        "type": "object",
+        "required": ["name", "size", "size_unit", "vintage", "kind", "source"],
+        "properties": {
+          "name": { "type": "string" },
+          "size": { "type": "number" },
+          "size_unit": { "type": "string", "enum": ["兆円", "億円", "百万円", "百万ドル", "十億ドル"] },
+          "vintage": { "type": "integer", "description": "計測年（西暦）。必須。" },
+          "period": { "type": "string", "description": "始点年→終点年。例 2020→2025" },
+          "kind": { "type": "string", "enum": ["実績", "予測"] },
+          "cagr_pct": { "type": ["number", "null"] },
+          "source": { "type": "string" }
+        }
+      }
+    },
+
+    "share": {
+      "type": "array",
+      "description": "シェア三角測量。company_revenue_oku ÷ market_size_oku ×100 が stated_share_pct と整合すること（自社売上÷市場規模＝記載シェア）。",
+      "items": {
+        "type": "object",
+        "required": ["market", "company_revenue_oku", "market_size_oku", "stated_share_pct"],
+        "properties": {
+          "market": { "type": "string", "description": "market[].name に対応" },
+          "company_revenue_oku": { "type": "number", "description": "当該市場に対応する自社売上（億円）" },
+          "market_size_oku": { "type": "number", "description": "市場規模（億円換算）" },
+          "stated_share_pct": { "type": "number", "description": "本文に書くシェア（％）" }
+        }
+      }
+    },
+
+    "competitors": {
+      "type": "array",
+      "minItems": 1,
+      "description": "主要競合。可能なら ticker と一次出典（競合の有報/短信）を付す。",
+      "items": {
+        "type": "object",
+        "required": ["name", "source"],
+        "properties": {
+          "name": { "type": "string" },
+          "ticker": { "type": "string" },
+          "listed": { "type": "string" },
+          "source": { "type": "string" }
+        }
+      }
+    },
+
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "未取得/不開示の項目と理由（推定で埋めていないことの明示）"
+    }
+  }
+}

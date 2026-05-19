@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "causal_graph",
+  "description": "topic-study の構造化中間表現（IR）。Step1 の因果連鎖をプローズにする前に必ずこの形で確定する。check_causal_graph.py の構造ゲートと chain-critic サブエージェントが本ファイルを入力にする。エッジは接続詞という質的記述だけでなく、magnitude/lag/confidence を持たせて『語り』を『モデル』に変える。反対連鎖(counter_chain)は箇条書きの弱点ではなく、結論が逆になる対称的な連鎖として必ず構築する。",
+  "type": "object",
+  "required": ["topic", "summary", "nodes", "edges", "counter_chain", "adjudication"],
+  "properties": {
+    "topic": { "type": "string" },
+    "summary": { "type": "string", "description": "Step0『一言でいうと』の核（対比軸＋象徴数値）" },
+
+    "nodes": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "text", "critical"],
+        "properties": {
+          "id": { "type": "string", "description": "①②③… または m1,a1 等のラベル。一意" },
+          "text": { "type": "string", "description": "1ノード=1事象。複文・略語禁止" },
+          "critical": { "type": "boolean", "description": "数値/固有名詞を含む・反証で全体が崩れる・逆説の前後・株式インパクトの根拠 のいずれか" },
+          "evidence_tier": {
+            "type": "string",
+            "enum": ["A", "B", "C", ""],
+            "description": "A=一次資料(IR/官公庁/業界白書) / B=媒体・アナリスト / C=モデル内推論。critical=true のノードは A/B/C のいずれか必須（空不可）"
+          },
+          "evidence": { "type": "string", "description": "出典名・媒体・日付（critical なら必須）" }
+        }
+      }
+    },
+
+    "edges": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "type", "connective"],
+        "properties": {
+          "from": { "type": "string", "description": "nodes[].id 参照" },
+          "to": { "type": "string", "description": "nodes[].id 参照" },
+          "type": {
+            "type": "string",
+            "enum": ["順接", "逆説", "理由付け", "補足", "並行", "結論"]
+          },
+          "connective": { "type": "string", "description": "その結果／しかし／なぜなら 等。口語(だから/なので)禁止" },
+          "magnitude": { "type": "string", "description": "効果の大きさの目安。critical エッジは必須（例: 原油$1/bbl≈INPEX営業益±X億 / シェア+2pt / 定性大）" },
+          "lag": { "type": "string", "enum": ["即時", "1Q", "数Q", "年単位", ""], "description": "波及までの時間。critical エッジは必須" },
+          "confidence": { "type": "string", "enum": ["高", "中", "低", ""], "description": "critical エッジは必須" }
+        }
+      }
+    },
+
+    "counter_chain": {
+      "type": "object",
+      "description": "結論が逆になる対称的な反対連鎖。箇条書きの弱点ではなく連鎖として構築する（必須）。",
+      "required": ["opposite", "nodes", "edges", "conclusion"],
+      "properties": {
+        "opposite": { "type": "boolean", "description": "主連鎖と逆の結論に到達することの自己宣言。true 必須" },
+        "nodes": { "type": "array", "minItems": 2, "items": { "type": "object", "required": ["id", "text"], "properties": { "id": { "type": "string" }, "text": { "type": "string" }, "evidence": { "type": "string" } } } },
+        "edges": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["from", "to", "connective"], "properties": { "from": { "type": "string" }, "to": { "type": "string" }, "connective": { "type": "string" } } } },
+        "conclusion": { "type": "string", "description": "反対連鎖が到達する結論（主連鎖の conclusion と逆向き）" }
+      }
+    },
+
+    "main_conclusion": { "type": "string", "description": "主連鎖が到達する結論（counter_chain.conclusion と対比される）" },
+
+    "adjudication": {
+      "type": "object",
+      "description": "主連鎖 vs 反対連鎖の時間軸別の優劣裁定（親＝topic-study の統合判断。chain-critic は素材のみ）",
+      "required": ["short_term", "mid_term", "long_term"],
+      "properties": {
+        "short_term": { "type": "string", "description": "0-3M: 主連鎖優勢/反対連鎖優勢/拮抗 ＋一言根拠" },
+        "mid_term": { "type": "string", "description": "3-12M: 同上" },
+        "long_term": { "type": "string", "description": "1Y+: 同上" }
+      }
+    },
+
+    "stock_impact": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["category", "tickers"],
+        "properties": {
+          "category": { "type": "string", "description": "業界カテゴリ（粒度: 半導体製造装置(前/後工程) 等。広すぎ/企業名カテゴリ禁止）" },
+          "tickers": { "type": "array", "items": { "type": "string" }, "maxItems": 3 },
+          "mechanism": { "type": "string", "description": "売値/販売量/コスト→営業利益 の業績変動メカニズム要約" },
+          "confidence": { "type": "string", "enum": ["高", "中", "低"] },
+          "horizon": { "type": "string", "enum": ["短期", "中期", "長期"] }
+        }
+      }
+    }
+  }
+}
