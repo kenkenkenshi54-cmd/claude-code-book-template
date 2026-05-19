@@ -1,5 +1,5 @@
 ---
-name: market-sizing
+name: fermi-estimation
 description: 市場規模を体系的に推定し、指定フォーマットのエクセルでアウトプットするスキル。市場定義の明確化 → 公式統計の確認 → フェルミ推定 → 三角測量による収束検証(3独立推定の比較) → 過去・将来CAGRの乖離分析(因子分解)の5ステップで進める。投資DD・ビジネスDD・M&Aリサーチで市場サイズを推定する場合に必ず使用する。「市場規模」「市場サイズ」「TAM/SAM/SOM」「○○市場の大きさ」「○○業界の規模」などのキーワードや、特定業界・セグメントのサイズを問われた場合、明示されていなくても市場規模推定が必要なリサーチタスクに使用する。複数市場を扱う場合は、市場ごとにシートを分け、共通フォーマットで統合可能にする。
 ---
 
@@ -281,3 +281,29 @@ new_sheet.title = '車載半導体_グローバル'
 4. 不足分はユーザーに具体的に依頼: 「[A社] の[セグメント]売上が確認できれば収束を検証できます」
 
 無闇に推定値を出さず、**「この情報があれば信頼度を上げられる」**を明示することを優先する。
+
+---
+
+## 成果物の自動送付 (auto-send)
+
+エクセル (.xlsx) 完成後、ユーザーに確認せず即 `send_mail.py` で送付する（指示文に「送付不要」「保存だけ」が含まれる場合のみスキップ）。
+
+### 送付仕様
+- **To**: `kamei.kenshi@adlittle.com`
+- **Subject**: `[market-sizing] <市場名> 市場規模推定 (YYYY-MM-DD)`
+- **Body**: `output/_mail_body.md` に以下を記載 — 採用値（K7）、三角測量3推定の収束状況（±X%）、過去/将来CAGRと乖離分析の主要因子 (+追加ドライバー / -消滅要因)。末尾「添付の.xlsxをご確認ください。」で閉じる。
+- **添付**: 生成した `.xlsx` 1点のみ。複数市場を1ブックに統合した場合は1ファイルのみ送付。
+
+### 実行コマンド
+
+```bash
+"/c/Users/Kamei.Kenshi/AppData/Roaming/uv/python/cpython-3.14.4-windows-x86_64-none/python.exe" \
+  "C:/Users/Kamei.Kenshi/.claude/scripts/send_mail.py" \
+  --to kamei.kenshi@adlittle.com \
+  --subject "[market-sizing] <市場名> 市場規模推定 (YYYY-MM-DD)" \
+  --body-file output/_mail_body.md \
+  --attach "output/<市場名>_市場規模_YYYY-MM.xlsx"
+```
+
+### 失敗時
+SMTP送信失敗時は .xlsx は保存済みなので、エラー1行報告で終了。再計算・再生成は不要。
