@@ -1,0 +1,36 @@
+nikkei:
+  name: 日本経済新聞
+  search_url: "https://www.nikkei.com/search?keyword={query}"
+  article_selector: "article"
+  title_selector: "h1"
+  body_selector: "section[class*='article_body'], div[class*='article-body']"
+  date_selector: "time"
+  rate_limit_ms: 3000
+  notes: |
+    JSON-LDが埋まっているので script[type='application/ld+json'] からの抽出が安定。
+    検索結果は /search?keyword= のクエリパラメータ。
+
+nikkei-business:
+  name: 日経ビジネス
+  search_url: "https://business.nikkei.com/search/?query={query}"
+  article_selector: "article"
+  title_selector: "h1.title, h1"
+  body_selector: "div.article-body, div[class*='body']"
+  date_selector: "time, .date"
+  rate_limit_ms: 4000
+  notes: |
+    検索結果は無限スクロール。20件取るには 2-3回 scroll 必要。
+    日経電子版とアカウント別の場合あり（要確認）。
+
+toyokeizai:
+  name: 東洋経済オンライン
+  search_url: "https://toyokeizai.net/search?keyword={query}"
+  article_selector: "article, main"
+  title_selector: "h1"
+  body_selector: "div.article-body, section.article"
+  date_selector: "time, .date"
+  rate_limit_ms: 3000
+  notes: |
+    無料記事と有料記事が混在。URL形式: /articles/-/<数字>
+    プラス会員限定はページ下部に「続きを読むには」要素が出る。
+    

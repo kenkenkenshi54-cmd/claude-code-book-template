@@ -1,0 +1,52 @@
+[
+  {
+    "label": "yuho_FY2021",
+    "found": true,
+    "docID": "S100LJD5",
+    "date": "2021-06-18",
+    "docTypeCode": "120",
+    "desc": "有価証券報告書－第22期(令和2年4月1日－令和3年3月31日)",
+    "filer": "株式会社レノバ",
+    "csvDir": "c:\\Users\\Kamei.Kenshi\\Documents\\dev\\claude-code-book-template\\workspace\\business-dd\\work_renova\\edinet\\yuho_FY2021\\XBRL_TO_CSV"
+  },
+  {
+    "label": "yuho_FY2022",
+    "found": true,
+    "docID": "S100O9MP",
+    "date": "2022-06-17",
+    "docTypeCode": "120",
+    "desc": "有価証券報告書－第23期(令和3年4月1日－令和4年3月31日)",
+    "filer": "株式会社レノバ",
+    "csvDir": "c:\\Users\\Kamei.Kenshi\\Documents\\dev\\claude-code-book-template\\workspace\\business-dd\\work_renova\\edinet\\yuho_FY2022\\XBRL_TO_CSV"
+  },
+  {
+    "label": "yuho_FY2023",
+    "found": true,
+    "docID": "S100QZ6W",
+    "date": "2023-06-20",
+    "docTypeCode": "120",
+    "desc": "有価証券報告書－第24期(2022/04/01－2023/03/31)",
+    "filer": "株式会社レノバ",
+    "csvDir": "c:\\Users\\Kamei.Kenshi\\Documents\\dev\\claude-code-book-template\\workspace\\business-dd\\work_renova\\edinet\\yuho_FY2023\\XBRL_TO_CSV"
+  },
+  {
+    "label": "yuho_FY2024",
+    "found": true,
+    "docID": "S100TNIO",
+    "date": "2024-06-20",
+    "docTypeCode": "120",
+    "desc": "有価証券報告書－第25期(2023/04/01－2024/03/31)",
+    "filer": "株式会社レノバ",
+    "csvDir": "c:\\Users\\Kamei.Kenshi\\Documents\\dev\\claude-code-book-template\\workspace\\business-dd\\work_renova\\edinet\\yuho_FY2024\\XBRL_TO_CSV"
+  },
+  {
+    "label": "yuho_FY2025",
+    "found": true,
+    "docID": "S100VZPK",
+    "date": "2025-06-19",
+    "docTypeCode": "120",
+    "desc": "有価証券報告書－第26期(2024/04/01－2025/03/31)",
+    "filer": "株式会社レノバ",
+    "csvDir": "c:\\Users\\Kamei.Kenshi\\Documents\\dev\\claude-code-book-template\\workspace\\business-dd\\work_renova\\edinet\\yuho_FY2025\\XBRL_TO_CSV"
+  }
+]

@@ -239,7 +239,15 @@
       "Bash(node business-dd/.claude/skills/business-dd/scripts/edinet_grep.cjs *)",
       "Bash(node business-dd/.claude/skills/business-dd/scripts/edinet_textblock.cjs *)",
       "Agent",
-      "Task"
+      "Task",
+      "Bash(node \".claude\\\\skills\\\\business-dd\\\\scripts\\\\edinet_grep.cjs\" \"work_asahi_yukizai/edinet/yuho_FY2023/XBRL_TO_CSV\" \"NotesSegmentInformationEtcConsolidatedFinancialStatementsTextBlock\")",
+      "Bash(node \".claude\\\\skills\\\\business-dd\\\\scripts\\\\edinet_grep.cjs\" \"work_asahi_yukizai/edinet/yuho_FY2025/XBRL_TO_CSV\" \"NetSales\" \"OperatingIncome\" \"OrdinaryIncome\" \"ProfitLossAttributableToOwnersOfParent\" \"DividendPaidPerShareSummaryOfBusinessResults\" \"ResearchAndDevelopmentExpenses\" \"CapitalExpenditures\")",
+      "Bash(node \".claude\\\\skills\\\\business-dd\\\\scripts\\\\edinet_grep.cjs\" \"work_asahi_yukizai/edinet/yuho_FY2025/XBRL_TO_CSV\" \"BusinessRisksTextBlock\" \"OverviewOfBusinessResultsTextBlock\")",
+      "Bash(\"/c/Users/Kamei.Kenshi/AppData/Roaming/uv/python/cpython-3.14.4-windows-x86_64-none/python.exe\" numerical_checks.py)",
+      "Bash(\"/c/Users/Kamei.Kenshi/AppData/Roaming/uv/python/cpython-3.14.4-windows-x86_64-none/python.exe\" \"c:/Users/Kamei.Kenshi/Documents/dev/claude-code-book-template/workspace/business-dd/.claude/skills/business-dd/reference/numerical_checks.py\" \"c:/Users/Kamei.Kenshi/Documents/dev/claude-code-book-template/workspace/business-dd/work_renova/dd_model.json\")",
+      "Read(//usr/**)",
+      "Read(//usr/local/**)",
+      "Bash(powershell -Command ' *)"
     ],
     "deny": [
       "Bash(rm -rf *)",
